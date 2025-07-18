@@ -1,0 +1,172 @@
+CREATE DATABASE technoverse_db;
+
+USE technoverse_db;
+ALTER TABLE vlogs ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+ALTER TABLE users  
+ADD COLUMN bio TEXT,  
+ADD COLUMN location VARCHAR(255) DEFAULT '',  
+ADD COLUMN avatar VARCHAR(500) DEFAULT '',  
+ADD COLUMN join_date DATETIME DEFAULT CURRENT_TIMESTAMP,  
+ADD COLUMN created_at DATETIME DEFAULT CURRENT_TIMESTAMP,  
+ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+
+CREATE TABLE otps (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    otp VARCHAR(10) NOT NULL,
+    expires_at DATETIME NOT NULL
+);
+
+
+CREATE TABLE join_us (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20),
+    college_name VARCHAR(255),
+    course_stream VARCHAR(255),
+    year_of_study VARCHAR(20),
+    skills TEXT,
+    interests TEXT,
+    motivation TEXT,
+    github_url VARCHAR(255),
+    linkedin_url VARCHAR(255),
+    website_url VARCHAR(255),
+    availability TEXT,
+    team_preferences TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+
+CREATE TABLE carouseltable (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE team (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    role VARCHAR(100),
+    image VARCHAR(255),
+    github VARCHAR(255),
+    linkedin VARCHAR(255)
+);
+
+CREATE TABLE sponsors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    logo VARCHAR(255) NOT NULL,
+    website VARCHAR(255) NOT NULL
+);
+
+
+
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    date DATETIME NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    participants VARCHAR(100) NOT NULL,
+    prize_pool VARCHAR(100) NOT NULL,
+    entry_fee VARCHAR(100) NOT NULL,
+    categories VARCHAR(255) NOT NULL,
+    about TEXT NOT NULL,
+    image VARCHAR(255) NOT NULL
+);
+ALTER TABLE events 
+ADD COLUMN rules_guidelines TEXT AFTER image,
+ADD COLUMN registration_start DATETIME AFTER rules_guidelines,
+ADD COLUMN registration_end DATETIME AFTER registration_start,
+ADD COLUMN event_start DATETIME AFTER registration_end,
+ADD COLUMN event_end DATETIME AFTER event_start;
+
+
+CREATE TABLE eventdata (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    team_name VARCHAR(255) NOT NULL,
+    team_leader_name VARCHAR(255) NOT NULL,
+    team_leader_email VARCHAR(255) NOT NULL,
+    team_leader_phone VARCHAR(20),
+    members JSON NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    project_name VARCHAR(255) NOT NULL,
+    project_description TEXT NOT NULL,
+    github VARCHAR(255) NOT NULL,
+    linkedin VARCHAR(255) NOT NULL,
+    project_proposal VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE  vlogs (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  video_url TEXT NOT NULL,
+  thumbnail_url TEXT NOT NULL,
+  duration TEXT NOT NULL,
+  views INTEGER DEFAULT 0,
+  likes INTEGER DEFAULT 0
+);
+
+SELECT * FROM users;
+TRUNCATE TABLE users ;
+
+SELECT * FROM otps ;
+TRUNCATE TABLE otps ; 
+
+SELECT * FROM join_us;
+TRUNCATE TABLE join_us;
+
+
+SELECT * FROM carouseltable;
+TRUNCATE TABLE carouseltable;
+
+
+SELECT * FROM team ;
+TRUNCATE TABLE team ;
+
+
+SELECT * FROM sponsors;
+TRUNCATE TABLE sponsors;
+
+SELECT * FROM events;
+TRUNCATE TABLE events;
+
+
+SELECT * FROM vlogs;
+TRUNCATE TABLE vlogs;
+
+
+SELECT * FROM eventdata;
+TRUNCATE TABLE eventdata;
+
+
+
+DROP TABLE  event_images ;
+CREATE TABLE users1 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    bio TEXT,
+    location VARCHAR(255),
+    avatar VARCHAR(255)
+);
+SELECT * FROM users1;
+TRUNCATE TABLE users1;
