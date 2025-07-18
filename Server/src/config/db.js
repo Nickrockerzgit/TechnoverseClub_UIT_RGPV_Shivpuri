@@ -63,7 +63,7 @@
 
 
 
-//after TIDB setup connection 
+//after TiDB setup connection 
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
 
