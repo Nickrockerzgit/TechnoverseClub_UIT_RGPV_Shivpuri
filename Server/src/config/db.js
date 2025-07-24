@@ -77,7 +77,7 @@ const dbConfig = {
   port: process.env.TiDB_PORT,
   ssl: {
     minVersion: 'TLSv1.2',
-    rejectUnauthorized: false
+    rejectUnauthorized: true
   }
 };
 

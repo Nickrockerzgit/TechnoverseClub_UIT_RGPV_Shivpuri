@@ -12,6 +12,8 @@ interface Slide {
   image: File | string;
 }
 
+// const baseURL = import.meta.env.VITE_BASE_URL;
+
 const CarouselManagement = () => {
   const [slides, setSlides] = useState<Slide[]>([
     { title: '', description: '', image: '' },
@@ -44,7 +46,7 @@ const CarouselManagement = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/carousel/get-slides');
+        const response = await axios.get("http://localhost:5001/api/carousel/get-slides");
         const fetchedSlides = response.data;
 
         const formattedSlides: Slide[] = fetchedSlides.map((slide: any) => ({
@@ -104,7 +106,7 @@ const CarouselManagement = () => {
         description: slide.description
       }))));
 
-      const response = await axios.post('http://localhost:5001/api/carousel/upload-slide', formData, {
+      const response = await axios.post("http://localhost:5001/api/carousel/upload-slide", formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

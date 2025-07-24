@@ -13,13 +13,19 @@ interface Slide {
   image: string;
 }
 
+
+// const baseURL = import.meta.env.VITE_BASE_URL;
+const IMAGEKIT_URL = import.meta.env.VITE_IMAGEKIT_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const Carousel = () => {
   const [slides, setSlides] = useState<Slide[]>([]);
 
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/carousel/get-slides');
+        // const response = await axios.get("http://localhost:5001/api/carousel/get-slides");
+        const response = await axios.get(`${VITE_BASE_URL}/api/carousel/get-slides`);
         setSlides(response.data);
       } catch (error) {
         console.error('Error fetching slides:', error);
@@ -49,7 +55,8 @@ const Carousel = () => {
         <SwiperSlide key={slide.id}>
           <div className="relative h-[400px]">
             <img
-              src={`http://localhost:5001${slide.image}`}
+              // src={`http://localhost:5001${slide.image}`}
+              src={`${IMAGEKIT_URL}${slide.image}`}
               alt={slide.title}
               className="absolute inset-0 w-full h-full object-cover"
             />
